@@ -4,6 +4,8 @@
 
 {% for project in projects %}
     <a href="{% url 'project' project.id %}">{{ project.title }}</a>
+    <a href="{% url 'update_project' project.id %}">Update</a>
+    <a href="{% url 'delete_project' project.id %}">Delete</a>
     <p></p>
 {% endfor %}
 

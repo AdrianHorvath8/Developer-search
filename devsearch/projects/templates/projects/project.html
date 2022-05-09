@@ -1,6 +1,13 @@
 {% extends 'main.html' %}
 
 {% block content %}
-{{project.title}}
+
+
+<h1>{{project.title}}</h1>
+
+<hr>
+{{project.tags}}
+<hr>
+<p>{{project.description}}</p>
 
 {% endblock %}

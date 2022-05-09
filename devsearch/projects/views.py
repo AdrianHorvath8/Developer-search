@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 from . models import Project, Tag, Review
 from . forms import ProjectForm
 
-def home (request):
+def projects (request):
     projects = Project.objects.all()
     context = {"projects":projects}
-    return render(request, "projects/home.html", context)
+    return render(request, "projects/projects.html", context)
 
 def project(request, pk):
     project = Project.objects.get(id=pk)
@@ -21,7 +21,7 @@ def create_project(request):
 
         if form.is_valid():
             form.save()
-            return redirect("home")
+            return redirect("projects")
 
     context = {"form": form}
     return render(request, "projects/project_form.html", context)
@@ -37,7 +37,7 @@ def update_project(request,pk):
 
         if form.is_valid():
             form.save()
-            return redirect("home")
+            return redirect("projects")
 
     context = {"form": form}
     return render(request, "projects/project_form.html", context)
@@ -48,6 +48,6 @@ def delete_project(request,pk):
     if request.method == "POST":
 
         project.delete()
-        return redirect("home")
+        return redirect("projects")
     context = {"obj": project}
     return render(request, "projects/delete_template.html", context)

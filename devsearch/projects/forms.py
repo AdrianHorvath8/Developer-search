@@ -1,9 +1,30 @@
+
 from django.forms import ModelForm
 from .models import Project
-
+from django import forms
 
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
         fields = "__all__"
         exclude = ["vote_total","vote_ratio"]
+
+        widgets = {
+            "tags":forms.CheckboxSelectMultiple(),
+        }
+    
+    def __init__(self):
+        super(ProjectForm, self).__init__()
+
+        self.fields["title"].widget.attrs.update(
+            {"class":"input", "placeholder":"Add title"})
+        
+        self.fields["description"].widget.attrs.update(
+            {"class":"input"})
+        
+        self.fields["demo_link"].widget.attrs.update(
+            {"class":"input"})
+        
+        self.fields["source_link"].widget.attrs.update(
+            {"class":"input"})
+        

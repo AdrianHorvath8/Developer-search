@@ -1,7 +1,7 @@
+import email
 from django.db import models
 from django.contrib.auth.models import User
 import uuid
-
 
     
 
@@ -27,7 +27,7 @@ class Profile(models.Model):
     
 
     def __str__(self):
-        return str(self.name)
+        return str(self.username)
 
 
 class Skill(models.Model):
@@ -41,3 +41,6 @@ class Skill(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+
+

@@ -1,3 +1,4 @@
+
 :root {
   --color-sub: #2d2d39;
 }
@@ -5,6 +6,7 @@
 .btn--sub {
   background-color: var(--color-sub-light);
 }
+
 
 .card {
   border: 2px solid var(--color-light);
@@ -844,4 +846,12 @@ img {
   color: var(--color-sub);
   margin-bottom: 1rem;
   margin-top: 2rem;
+}
+
+.alert {
+  position: fixed;
+  left: 50%;
+  top: 135px;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
 }

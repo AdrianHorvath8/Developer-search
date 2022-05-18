@@ -13,7 +13,7 @@ class ProjectForm(ModelForm):
             "tags":forms.CheckboxSelectMultiple(),
         }
     
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         super(ProjectForm, self).__init__()
 
         self.fields["title"].widget.attrs.update(

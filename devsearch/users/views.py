@@ -18,11 +18,6 @@ def login_user(request):
         password = request.POST["password"]
         
 
-        try:
-            user = User.objects.get(username=username)
-        except:
-            messages.error(request, "Username does not exist")
-
         user = authenticate(request, username=username, password=password)
 
 
@@ -37,7 +32,7 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    messages.error(request, "User was logout")
+    messages.info(request, "User was logout")
     return redirect("profiles")
 
 

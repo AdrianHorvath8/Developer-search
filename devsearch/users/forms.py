@@ -1,7 +1,7 @@
 from django.forms import ModelForm
-
+from .models import Skill
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User 
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -27,3 +27,9 @@ class CustomUserCreationForm(UserCreationForm):
 
         self.fields["password2"].widget.attrs.update(
             {"class":"input"})
+
+
+class SkillForm(ModelForm):
+    class Meta:
+        model = Skill
+        fields = ["name","description"]

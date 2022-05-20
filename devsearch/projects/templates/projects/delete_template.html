@@ -2,11 +2,20 @@
 
 {% block content %}
 
-<h2>Do you really want to delete "{{obj}}"</h2>
-<a href="{{ request.META.HTTP_REFERER }}"><button>Go back</button></a>
-<form action="" method="POST" >
-    {% csrf_token %}
-    <input type="submit" value="Confirm" >
-</form>
 
+
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class="formWrapper">
+            <a class="backButton" href="{{ request.GET.next }}"><i class="im im-angle-left"></i></a>
+            <br>
+
+            <form action="" method="POST" class="form" >
+                {% csrf_token %}
+                <p>Do you really want to delete "{{obj}} ?"</p>
+                <input class="btn btn--sub btn--lg  my-md" type="submit" value="Confirm" />
+            </form>
+        </div>
+    </div>
+</main>
 {% endblock %}

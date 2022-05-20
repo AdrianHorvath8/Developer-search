@@ -8,6 +8,7 @@ from .models import Skill
 from .forms import CustomUserCreationForm, SkillForm, ProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.db.models import Q
 
 
 def login_user(request):
@@ -19,9 +20,7 @@ def login_user(request):
         username = request.POST["username"]
         password = request.POST["password"]
         
-
         user = authenticate(request, username=username, password=password)
-
 
         if user != None:
             login(request, user)
@@ -58,10 +57,23 @@ def register_user(request):
     context = {"page" : page,"form":form}
     return render(request, "users/login_register.html", context)
 
+
 def profiles (request):
-    profiles= Profile.objects.all()
-    context = {"profiles":profiles}
+    search_query = ""
+
+    if request.GET.get("search_query"):
+        search_query = request.GET.get("search_query")
+
+    skill = Skill.objects.filter(name__icontains=search_query)
+
+    profiles= Profile.objects.distinct().filter(
+    Q(name__icontains = search_query) |
+    Q(short_info__icontains = search_query)| 
+    Q(skill__in = skill)
+     )
+    context = {"profiles":profiles, "search_query":search_query}
     return render(request, "users/profiles.html", context)
+
 
 def profile (request, pk):
     profile= Profile.objects.get(id=pk)
@@ -70,6 +82,7 @@ def profile (request, pk):
 
     context = {"profile":profile, "skills_no_description":skills_no_description, "skills_with_description":skills_with_description}
     return render(request, "users/user_profile.html", context)
+
 
 @login_required(login_url="login")
 def user_account (request, pk):
@@ -120,6 +133,7 @@ def skill_edit(request, pk):
     context = {"form":form}
     return render(request, "users/skill_form.html", context)
 
+
 @login_required(login_url="login")
 def skill_create(request):
     
@@ -140,6 +154,7 @@ def skill_create(request):
 
     context = {"form":form}
     return render(request, "users/skill_form.html", context)
+
 
 @login_required(login_url="login")
 def skill_delete(request, pk):

@@ -3,11 +3,26 @@ from . models import Project, Tag, Review
 from . forms import ProjectForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.db.models import Q
+from users.models import Profile
 
 def projects (request):
-    projects = Project.objects.all()
-    context = {"projects":projects}
+    search_query = ""
+
+    if request.GET.get("search_query"):
+        search_query = request.GET.get("search_query")
+
+    tag = Tag.objects.filter(name__icontains = search_query)
+    
+    projects = Project.objects.distinct().filter(
+    Q(title__icontains = search_query)|
+    Q(description__icontains = search_query) |
+    Q(tags__in = tag) |
+    Q(owner__name__icontains = search_query) 
+       )
+    context = {"projects":projects, "search_query":search_query}
     return render(request, "projects/projects.html", context)
+
 
 def project(request, pk):
     project = Project.objects.get(id=pk)
@@ -32,6 +47,7 @@ def create_project(request):
     context = {"form": form}
     return render(request, "projects/project_form.html", context)
 
+
 @login_required(login_url="login")
 def update_project(request,pk):
     profile = request.user.profile
@@ -48,6 +64,7 @@ def update_project(request,pk):
 
     context = {"form": form}
     return render(request, "projects/project_form.html", context)
+
 
 @login_required(login_url="login")
 def delete_project(request,pk):

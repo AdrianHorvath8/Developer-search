@@ -2,6 +2,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
+
+from projects.views import project, projects
 from .models import Profile
 from django.contrib.auth.models import User
 from .models import Skill
@@ -9,6 +11,7 @@ from .forms import CustomUserCreationForm, SkillForm, ProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 def login_user(request):
@@ -71,6 +74,10 @@ def profiles (request):
     Q(short_info__icontains = search_query)| 
     Q(skill__in = skill)
      )
+
+    
+
+
     context = {"profiles":profiles, "search_query":search_query}
     return render(request, "users/profiles.html", context)
 

@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
 from users.models import Profile
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 def projects (request):
     search_query = ""
@@ -20,7 +21,22 @@ def projects (request):
     Q(tags__in = tag) |
     Q(owner__name__icontains = search_query) 
        )
-    context = {"projects":projects, "search_query":search_query}
+
+    page = request.GET.get("page")
+    paginator= Paginator(projects, 6)
+
+    try:
+        projects = paginator.page(page)
+    except PageNotAnInteger:
+        page = 1
+        projects = paginator.page(page)
+    except EmptyPage:
+        page = paginator.num_pages
+        projects = paginator.page(page)
+
+    # video 16:55 pagination
+
+    context = {"projects":projects, "search_query":search_query, "paginator":paginator}
     return render(request, "projects/projects.html", context)
 
 

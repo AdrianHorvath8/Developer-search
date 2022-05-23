@@ -1,11 +1,7 @@
-
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-
 from projects.views import project, projects
 from .models import Profile
-from django.contrib.auth.models import User
 from .models import Skill
 from .forms import CustomUserCreationForm, SkillForm, ProfileForm
 from django.contrib.auth.decorators import login_required

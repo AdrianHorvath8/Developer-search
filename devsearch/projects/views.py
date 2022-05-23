@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
-from . models import Project, Tag, Review
+from . models import Project, Tag
 from . forms import ProjectForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
-from users.models import Profile
+
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 def projects (request):
@@ -34,7 +34,7 @@ def projects (request):
         page = paginator.num_pages
         projects = paginator.page(page)
 
-    # video 16:55 pagination
+    # video 16:55 paginatio
 
     context = {"projects":projects, "search_query":search_query, "paginator":paginator}
     return render(request, "projects/projects.html", context)

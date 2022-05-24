@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from . models import Project, Tag
-from . forms import ProjectForm
+from . forms import ProjectForm, ReviewForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
@@ -42,6 +42,7 @@ def projects (request):
 
     if right_index > paginator.num_pages:
         right_index = paginator.num_pages+1
+    
 
     custom_range= range(left_index,right_index)
 
@@ -51,7 +52,30 @@ def projects (request):
 
 def project(request, pk):
     project = Project.objects.get(id=pk)
-    context = {"project":project}
+
+    form = ReviewForm()
+    #video 27:24
+    try:
+        if request.method == "POST":
+            form = ReviewForm(request.POST)
+            if form.is_valid():
+                review = form.save(commit=False)
+                review.owner = request.user.profile
+                review.project = project
+                review.save()
+                
+                project.get_vote_count
+
+
+                messages.success(request, "Your review was created")
+                return redirect("project", pk=project.id)
+    except:
+        messages.error(request, "You already review this project")
+
+
+
+
+    context = {"project":project, "form":form}
     return render(request, "projects/project.html", context)
 
 
@@ -104,3 +128,4 @@ def delete_project(request,pk):
         return redirect("account", pk = request.user.profile.id)
     context = {"obj": project}
     return render(request, "projects/delete_template.html", context)
+

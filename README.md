@@ -7,7 +7,7 @@ I have created a website which provides searching developers and their projects.
 
 ### Prerequisites
 
-You need to have installed python, VScode.
+You need to have installed python and VScode.
 
 
 ### Installing

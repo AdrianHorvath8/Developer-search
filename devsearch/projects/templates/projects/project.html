@@ -41,18 +41,32 @@
                         {{ project.vote_ratio }}% Postitive Feedback ({{ project.vote_total }} Vote{{ project.vote_total|pluralize:"s" }})
                     </h5>
                     
-                    <form class="form" action="{% url 'project' project.id %}" method="POST">
-                        {% csrf_token %}
-                        
-                        {% for field in form %}
-                        {{field.label}}
-                            <div >                                          
-                                {{field}}
-                            </div>
-                        {% endfor %}
-                        <input class="btn btn--sub btn--lg" type="submit" value="Add review" name="comment" />
-                        
-                    </form>
+                    {% if request.user.profile.id in project.reviewers  %}
+                        <p>You already reviewed this project</p>
+
+                    {% elif request.user.profile == project.owner %}
+                        <p>You cannot review your project</p> 
+
+                    {% elif request.user.is_authenticated %}
+                       
+                        <form class="form" action="{% url 'project' project.id %}" method="POST">
+                            {% csrf_token %}
+                            
+                            {% for field in form %}
+                            {{field.label}}
+                                <div >                                          
+                                    {{field}}
+                                </div>
+                            {% endfor %}
+                            <input class="btn btn--sub btn--lg" type="submit" value="Add review" name="comment" />
+                            
+                        </form>
+                    {% else %}  
+                        <a href="{% url 'login' %}?next={{request.path}}"> You must be logged in to review this project </a>
+
+                    {% endif %}
+
+
                     <div class="commentList">
                         {% for review in project.review_set.all %}
                         {% if review.body %}

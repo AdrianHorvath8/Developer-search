@@ -16,14 +16,14 @@ def login_user(request):
         return redirect("profiles")
 
     if request.method == "POST":
-        username = request.POST["username"]
+        username = request.POST["username"].lower()
         password = request.POST["password"]
         
         user = authenticate(request, username=username, password=password)
 
         if user != None:
             login(request, user)
-            return redirect("profiles")
+            return redirect(request.GET["next"] if "next" in request.GET else "profiles")
         else:
             messages.error(request, "Username or password is incorect")
     context = {}

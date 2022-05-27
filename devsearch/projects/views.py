@@ -54,7 +54,7 @@ def project(request, pk):
     project = Project.objects.get(id=pk)
 
     form = ReviewForm()
-    #video 27:24
+   
     try:
         if request.method == "POST":
             form = ReviewForm(request.POST)

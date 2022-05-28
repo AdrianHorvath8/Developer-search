@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 
     "projects.apps.ProjectsConfig",
     "users.apps.UsersConfig",
+    "api",
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

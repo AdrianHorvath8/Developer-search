@@ -18,6 +18,19 @@
                 </div>
 
                 {% endfor %}
+
+
+                {% if page == "update" %}
+                Already used tags :
+                {% for tag in tags %}
+                    <p>{{tag}}</p>
+                {% endfor %}
+                {% endif %}
+
+                <div class="form">
+                    <label for="formInput#text">Tags:</label>
+                    <textarea class="input" name="newtags" placeholder="Add tags here ..." ></textarea>
+                </div>
                 <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
             </form>
         </div>

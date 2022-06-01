@@ -83,13 +83,19 @@ def project(request, pk):
 def create_project(request):
     form = ProjectForm()
     if request.method == "POST":
-
+        newtags = request.POST.get("newtags").replace(","," ").split()
         form = ProjectForm(request.POST, request.FILES)
 
         if form.is_valid():
-            user = form.save(commit = False)
-            user.owner = request.user.profile
-            user.save()
+            project = form.save(commit = False)
+            project.owner = request.user.profile
+            project.save()
+            for tag in newtags:
+                tag, created = Tag.objects.get_or_create(
+                    name = tag
+                )
+                project.tags.add(tag)
+            
             
             return redirect("account", pk = request.user.profile.id)
 
@@ -99,19 +105,28 @@ def create_project(request):
 
 @login_required(login_url="login")
 def update_project(request,pk):
+    page = "update"
     profile = request.user.profile
     project = profile.project_set.get(id=pk)
+    tags = project.tags.all()
     form = ProjectForm(instance=project)
     if request.method == "POST":
-
+        newtags = request.POST.get("newtags").replace(","," ").split()
+        
         form = ProjectForm(request.POST, request.FILES , instance=project)
 
         if form.is_valid():
-            form.save()
+            projects= form.save(commit=False)
+            for tag in newtags:
+                tag, created = Tag.objects.get_or_create(
+                    name = tag
+                )
+                projects.tags.add(tag)
+            projects.save()
             
             return redirect("account", pk = request.user.profile.id)
 
-    context = {"form": form}
+    context = {"form": form,"tags":tags,"page":page}
     return render(request, "projects/project_form.html", context)
 
 

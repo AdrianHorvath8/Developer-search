@@ -1,6 +1,4 @@
-from email.policy import default
-from operator import mod
-from statistics import mode
+
 import uuid
 from django.db import models
 

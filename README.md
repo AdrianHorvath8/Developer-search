@@ -21,6 +21,7 @@ You need to have installed python and VScode.
 ```
 pip install django
 pip install djangorestframework
+pip install django-cors-headers
 
 ```
 

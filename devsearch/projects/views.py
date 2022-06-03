@@ -85,7 +85,7 @@ def create_project(request):
     if request.method == "POST":
         newtags = request.POST.get("newtags").replace(","," ").split()
         form = ProjectForm(request.POST, request.FILES)
-
+        
         if form.is_valid():
             project = form.save(commit = False)
             project.owner = request.user.profile
@@ -143,4 +143,5 @@ def delete_project(request,pk):
         return redirect("account", pk = request.user.profile.id)
     context = {"obj": project}
     return render(request, "projects/delete_template.html", context)
+
 

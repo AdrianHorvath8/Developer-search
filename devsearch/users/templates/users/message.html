@@ -9,7 +9,13 @@
     <div class="message">
       <a class="backButton" href="{% url 'inbox' %}"><i class="im im-angle-left"></i></a>
       <h2 class="message__subject">{{ message.subject }}</h4>
-        <a href="{% url 'profile' message.sender.id %}" class="message__author">{{ message_request.name }}</a>
+        {% if message.sender %}
+        <a href="{% url 'profile' message.sender.id %}" class="message__author">{{ message.sender.name }}</a>
+        {% else %}
+        <strong>{{ message.name }}</strong>
+        <p></p>
+        <strong>{{ message.email }}</strong>
+        {% endif %}
         <p class="message__date">{{ message.created }}</p>
         <div class="message__body"> {{ message.body|linebreaksbr }} </div>
     </div>

@@ -14,7 +14,7 @@ class Profile(models.Model):
     email = models.EmailField(max_length=300, null= True, blank=True)
     short_info = models.CharField(max_length=200, blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
-    profile_image = models.ImageField(blank=True, null=True, upload_to="profiles/", default="profiles/user-default.png")
+    profile_image = models.ImageField(blank=False, null=False, upload_to="profiles/", default="profiles/user-default.png")
     social_github = models.CharField(max_length=200, blank=True, null=True)
     social_twitter = models.CharField(max_length=200, blank=True, null=True)
     social_linkedin = models.CharField(max_length=200, blank=True, null=True)
@@ -23,7 +23,8 @@ class Profile(models.Model):
     social_stackoverflow = models.CharField(max_length=200, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     
-    
+    class Meta:
+        ordering = ["-created"]
 
     def __str__(self):
         return str(self.username)

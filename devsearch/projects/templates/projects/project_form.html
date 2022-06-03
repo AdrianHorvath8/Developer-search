@@ -21,9 +21,9 @@
 
 
                 {% if page == "update" %}
-                Already used tags :
+                Already used tags :  
                 {% for tag in tags %}
-                    <p>{{tag}}</p>
+                    <div class="tag tag--pill tag--sub tag--lg">{{tag}}</div>
                 {% endfor %}
                 {% endif %}
 

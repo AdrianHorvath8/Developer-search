@@ -1,7 +1,7 @@
 # Not completed
 # Developer-search
 
-I have created a website which provides searching developers and their projects.
+I have created a website which provides searching developers and their projects. You can also contact them.
 ## Getting Started
 
 
@@ -17,6 +17,7 @@ You need to have installed python and VScode.
 * Open it with the VS code
 * Execute the commands listed below to the terminal
 * Then execute: python manage.py runserver
+
 
 ```
 pip install django

@@ -14,7 +14,7 @@ class CustomUserCreationForm(UserCreationForm):
         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
 
         self.fields["first_name"].widget.attrs.update(
-            {"class":"input", "placeholder":"Add name"})
+            {"class":"input"})
         
         self.fields["email"].widget.attrs.update(
             {"class":"input"})

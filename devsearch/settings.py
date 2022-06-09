@@ -135,7 +135,7 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get("devsearch"),
+        'NAME': "devsearch",
         'USER': os.environ.get("DB_USER"),
         'PASSWORD': os.environ.get("DB_PASSWORD"), 
         'HOST': os.environ.get("DB_HOST"),
@@ -212,3 +212,5 @@ AWS_SECRET_ACCESS_KEY =os.environ.get("AWS_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
 
 
+if os.getcwd() == '/app':
+    DEBUG = False

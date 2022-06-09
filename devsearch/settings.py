@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-pvcx$e3ewim)5ss0v)k159(9plc$!dd+v5uu9yv$g7j@)1r_+_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["devsearch8.herokuapp.com"]
+ALLOWED_HOSTS = ["localhost", "devsearch8.herokuapp.com"]
 
 
 # Application definition
@@ -211,3 +211,6 @@ AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY =os.environ.get("AWS_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
 
+
+#if os.getcwd() == '/app':
+#   DEBUG = False

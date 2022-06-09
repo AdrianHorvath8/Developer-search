@@ -212,9 +212,3 @@ AWS_SECRET_ACCESS_KEY =os.environ.get("AWS_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
 
 
-if os.getcwd() == '/app':
-    DEBUG = False
-
-
-
-CSRF_TRUSTED_ORIGINS = ["https://devsearch8.herokuapp.com/"]

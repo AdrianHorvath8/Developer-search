@@ -1,6 +1,6 @@
 # Developer-search
 
-I have created a website which provides finding developers. Developers can upload their projects. You can also contact them.
+I have created a website which provides finding developers. Developers can upload their projects and get feedback. You can also contact them.
 ## Getting Started
 
 

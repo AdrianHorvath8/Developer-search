@@ -11,7 +11,7 @@ You need to have installed python and VScode.
 
 ### Installing
 
-* clone repo [https://github.com/divanov11/Django-2021](https://github.com/AdrianHorvath8/Developer-search)
+* clone [repo](https://github.com/AdrianHorvath8/Developer-search)
 * create a virtual environment and activate
   * 1 - mkdir .venv   |=>  into root directory
   * 2 - python -m venv .venv

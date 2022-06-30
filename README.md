@@ -49,5 +49,5 @@ I use [Git](https://git-scm.com/) for versioning.
 
 ## Authors
 
-* **Adrián Horváth** - *Backend work* 
-* **Denis Ivanov** - *Frontend work*
+* **Adrián Horváth** - *Backend and HTML work* 
+* **Denis Ivanov** - *CSS and JS work*

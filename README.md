@@ -36,6 +36,7 @@ You need to have installed python and VScode.
 * Message other developers
 * Share your work
 * Rate others people work
+* Update your profile
 
 
 

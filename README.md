@@ -47,7 +47,7 @@ I use [Git](https://git-scm.com/) for versioning.
 ## Links
 
 * [API documentation](https://documenter.getpostman.com/view/18653876/Uz5NisrP)
-* https://dennisivy.teachable.com/p/django-beginners-course?product_id=3222835&coupon_code=BRAD = Frontend from this course    
+* [Frontend from this course](https://dennisivy.teachable.com/p/django-beginners-course?product_id=3222835&coupon_code=BRAD)   
  
 
 ## Authors

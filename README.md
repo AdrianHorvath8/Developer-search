@@ -8,7 +8,7 @@ I have created a website which provides finding developers. Developers can uploa
 
 ### Prerequisites
 
-You need to have installed [Python](https://www.python.org/downloads/) and VScode.
+You need to have installed [Python](https://www.python.org/downloads/) and [VScode](https://code.visualstudio.com/Download).
 
 
 ### Installing
